@@ -11,7 +11,8 @@ import UIKit
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var celsiusLabel: UILabel!
     @IBOutlet var textField: UITextField!
-    
+   
+    // Set Number Formatter for maximum fractions to 1
     let numberFormatter: NSNumberFormatter = {
         let nf = NSNumberFormatter()
         nf.numberStyle = .DecimalStyle
@@ -19,13 +20,15 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         nf.maximumFractionDigits = 1
         return nf
     }()
-    
+   
+    // If fahrenheit value gets set, do updateCelsiusLabel
     var fahrenheitValue: Double? {
         didSet {
             updateCelsiusLabel()
         }
     }
-   
+  
+    // Add computed property to celsiusValue
     var celsiusValue: Double? {
         if let value = fahrenheitValue {
             return (value-32) * (5/9)
@@ -35,6 +38,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // gets run when view appears, check time and change background color
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let currentTime = NSDate()
@@ -53,7 +57,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-    
+   
+    // if textField is changed, set fahrenheitValue which also updated celsius label
     @IBAction func fahrenheitFieldEditingChanged(textField: UITextField) {
         if let text = textField.text, value = Double(text) {
             fahrenheitValue = value
@@ -62,7 +67,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             fahrenheitValue = nil
         }
     }
-    
+   
+    // function to remove num pad if view is pressed
     @IBAction func dismissKeyboard(sender: AnyObject) {
         textField.resignFirstResponder()
     }
@@ -76,8 +82,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    
+    // use a delegate to check if decimal exists in text field
     func textField(textField: UITextField,
                    shouldChangeCharactersInRange: NSRange,
                    replacementString string: String) -> Bool {
