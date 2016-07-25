@@ -25,7 +25,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             updateCelsiusLabel()
         }
     }
-    
+   
     var celsiusValue: Double? {
         if let value = fahrenheitValue {
             return (value-32) * (5/9)
@@ -33,6 +33,25 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         else {
             return nil
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let currentTime = NSDate()
+        let hour = NSCalendar.currentCalendar().component(.Hour, fromDate: currentTime)
+        
+        switch hour {
+        case 6..<17:
+            //morning
+            self.view.backgroundColor = UIColor.clearColor()
+        case 17..<23:
+            //night
+            self.view.backgroundColor = UIColor.grayColor()
+        default:
+            //morning
+            self.view.backgroundColor = UIColor.grayColor()
+        }
+        
     }
     
     @IBAction func fahrenheitFieldEditingChanged(textField: UITextField) {
