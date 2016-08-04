@@ -9,8 +9,11 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var mapView: MKMapView!
+    var locManager: CLLocationManager!
+    
+    @IBOutlet weak var button: UIButton!
     
     override func loadView() {
         // Create a map view
@@ -37,12 +40,27 @@ class MapViewController: UIViewController {
         topConstraint.active = true
         leadingConstraint.active = true
         trailingConstraint.active = true
+        
+        let button = UIButton(type: .System)
+        button.setTitle("Loc", forState: .Normal)
+        button.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(MapViewController.showLocButton(_:)), forControlEvents: .TouchUpInside)
+        
+        view.addSubview(button)
+        
+        let topButtonConstraint = button.topAnchor.constraintEqualToAnchor(segmentedControl.bottomAnchor, constant: 8)
+        let leadingButtonConstraint = button.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor)
+        let trailingButtonConstraint = button.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor)
+        
+        topButtonConstraint.active = true
+        leadingButtonConstraint.active = true
+        trailingButtonConstraint.active = true
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("MapViewController loaded its view")
     }
     
     func mapTypeChanged(segControl: UISegmentedControl) {
@@ -57,4 +75,17 @@ class MapViewController: UIViewController {
             break
         }
     }
+    
+    func showLocButton (sender: UIButton!){
+        locManager = CLLocationManager()
+        let locationAuthStatus = CLLocationManager.authorizationStatus()
+        if locationAuthStatus == .AuthorizedWhenInUse {
+            mapView.showsUserLocation = true
+            mapView.setUserTrackingMode(.Follow, animated: true)
+        } else {
+            locManager.requestWhenInUseAuthorization()
+        }
+        
+    }
+    
 }
