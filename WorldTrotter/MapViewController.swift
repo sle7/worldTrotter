@@ -21,18 +21,19 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         // Set it as *the* view of this view controller
         view = mapView
-        
+       
+        // Create segmented control and add properties
         let segmentedControl = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
         segmentedControl.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         segmentedControl.selectedSegmentIndex = 0
-        
         segmentedControl.addTarget(self, action: #selector(MapViewController.mapTypeChanged(_:)), forControlEvents: .ValueChanged)
-        
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Add segmented control to map subview
         view.addSubview(segmentedControl)
-        
+       
+        // Set constraints for segmented control
         let topConstraint = segmentedControl.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 8)
-        
         let margins = view.layoutMarginsGuide
         let leadingConstraint = segmentedControl.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor)
         let trailingConstraint = segmentedControl.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor)
@@ -40,15 +41,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         topConstraint.active = true
         leadingConstraint.active = true
         trailingConstraint.active = true
-        
+       
+        // Create button for user location
         let button = UIButton(type: .System)
         button.setTitle("Loc", forState: .Normal)
         button.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(MapViewController.showLocButton(_:)), forControlEvents: .TouchUpInside)
-        
+        button.addTarget(self, action: #selector(MapViewController.showUserLoc(_:)), forControlEvents: .TouchUpInside)
+       
+        // Add button to map subview
         view.addSubview(button)
-        
+       
+        // Set constraints for segmented control
         let topButtonConstraint = button.topAnchor.constraintEqualToAnchor(segmentedControl.bottomAnchor, constant: 8)
         let leadingButtonConstraint = button.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor)
         let trailingButtonConstraint = button.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor)
@@ -62,7 +66,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+   
+    /*
+     mapTypeChanged - Change map type depending on which button is clicked on segmented control
+    */
     func mapTypeChanged(segControl: UISegmentedControl) {
         switch segControl.selectedSegmentIndex {
         case 0:
@@ -76,9 +83,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func showLocButton (sender: UIButton!){
+    /*
+     showUserLoc - Ask user for location authorization if necessary and show user location
+    */
+    func showUserLoc (sender: UIButton!){
         locManager = CLLocationManager()
         let locationAuthStatus = CLLocationManager.authorizationStatus()
+        // If authorized, show user location and follow. Else ask for authorization
         if locationAuthStatus == .AuthorizedWhenInUse {
             mapView.showsUserLocation = true
             mapView.setUserTrackingMode(.Follow, animated: true)
