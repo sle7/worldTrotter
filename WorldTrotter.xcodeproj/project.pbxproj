@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2246EF7A1D51BB610043CECD /* VacationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2246EF791D51BB610043CECD /* VacationViewController.swift */; };
 		2246EF7C1D51BBBB0043CECD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2246EF7B1D51BBBB0043CECD /* WebKit.framework */; };
+		22AD133F1D5DBF3800E42F03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 22AD13411D5DBF3800E42F03 /* Localizable.strings */; };
 		22CF9AA61D45A3590074F15A /* ConversionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF9AA51D45A3590074F15A /* ConversionViewController.swift */; };
 		22CF9AA81D45EFC40074F15A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CF9AA71D45EFC40074F15A /* MapKit.framework */; };
 		22CF9AB01D45F9670074F15A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF9AAF1D45F9670074F15A /* MapViewController.swift */; };
@@ -19,8 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		222B51DA1D5DB3F4003A0AEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		2246EF791D51BB610043CECD /* VacationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationViewController.swift; sourceTree = "<group>"; };
 		2246EF7B1D51BBBB0043CECD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		22AD133C1D5DBC6700E42F03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		22AD13401D5DBF3800E42F03 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		22AD13421D5DBF3B00E42F03 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		22CF9AA51D45A3590074F15A /* ConversionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversionViewController.swift; sourceTree = "<group>"; };
 		22CF9AA71D45EFC40074F15A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		22CF9AAF1D45F9670074F15A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 				22FF01C41D3C605F00690277 /* AppDelegate.swift */,
 				22CF9AA51D45A3590074F15A /* ConversionViewController.swift */,
 				2246EF791D51BB610043CECD /* VacationViewController.swift */,
+				22AD13411D5DBF3800E42F03 /* Localizable.strings */,
 				22FF01C81D3C605F00690277 /* Main.storyboard */,
 				22FF01CB1D3C605F00690277 /* Assets.xcassets */,
 				22FF01CD1D3C605F00690277 /* LaunchScreen.storyboard */,
@@ -120,6 +126,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 22FF01B81D3C605F00690277;
 			productRefGroup = 22FF01C21D3C605F00690277 /* Products */;
@@ -137,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22FF01CF1D3C605F00690277 /* LaunchScreen.storyboard in Resources */,
+				22AD133F1D5DBF3800E42F03 /* Localizable.strings in Resources */,
 				22FF01CC1D3C605F00690277 /* Assets.xcassets in Resources */,
 				22FF01CA1D3C605F00690277 /* Main.storyboard in Resources */,
 			);
@@ -159,10 +167,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		22AD13411D5DBF3800E42F03 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				22AD13401D5DBF3800E42F03 /* en */,
+				22AD13421D5DBF3B00E42F03 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		22FF01C81D3C605F00690277 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				22FF01C91D3C605F00690277 /* Base */,
+				222B51DA1D5DB3F4003A0AEC /* en */,
+				22AD133C1D5DBC6700E42F03 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
